@@ -1,10 +1,12 @@
-import './App.css';
+import './App.scss';
 import IdleCharacter from './components/IdleCharacter';
-import World from "./components/World"
+import CharacterSelect from './components/CharacterSelect';
+import World from "./components/World";
 
 function App() {
   return (
     <div className="App">
+      <CharacterSelect />
       <IdleCharacter />
       <World />
     </div>
