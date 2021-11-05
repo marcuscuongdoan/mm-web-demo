@@ -107,6 +107,8 @@
     cursor: pointer;
     border-radius: 10px;
     overflow: hidden;
+    transition: transform 0.2s;
+    -webkit-tap-highlight-color:  rgba(255, 255, 255, 0); 
 
     .character-name {
       margin-bottom: 50px;
@@ -118,6 +120,7 @@
       border-radius: 10px;
       width: 80px;
       height: 80px;
+      transition: all 0.2s;
       img {
         max-width: 100%;
         height: auto;
@@ -132,6 +135,9 @@
     }
     &.active {
       transform: scale(1.2) translateY(-12px);
+      .select-button {
+        background-color: white;
+      }
     }
   }
 }

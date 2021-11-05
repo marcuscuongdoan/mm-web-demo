@@ -183,6 +183,7 @@ function CharacterSelect() {
         let characterSelector = document.getElementById(character.name);
         characterSelector.addEventListener("click", changeCharacter, false);
         characterSelector.model = character;
+        if (character.visible) characterSelector.classList.add("active");
         selectors.push(characterSelector);
       });
       animate();
