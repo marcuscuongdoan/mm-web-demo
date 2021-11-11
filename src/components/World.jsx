@@ -22,7 +22,7 @@ function World() {
 
     camera.position.set(1, 75, 75);
 
-    const renderer = new THREE.WebGLRenderer();
+    const renderer = new THREE.WebGLRenderer({ alpha: true });
     renderer.setSize(width, height);
     // document.body.appendChild( renderer.domElement );
     // use ref as a mount point of the Three.js scene instead of the document.body
@@ -30,7 +30,7 @@ function World() {
 
     // add light
 
-    scene.fog = new THREE.Fog(0xa0a0a0, 1, 300);
+    scene.fog = new THREE.Fog(0xa0a0a0, 1, 3000);
     const hemiLight = new THREE.HemisphereLight(0xffffff, 0x444444);
     hemiLight.position.set(0, 20, 100);
     scene.add(hemiLight);
@@ -44,25 +44,25 @@ function World() {
     dirLight.shadow.camera.bottom = -10;
     scene.add(dirLight);
 
-    const geometry = new THREE.BufferGeometry();
-    const vertices = [];
+    // const geometry = new THREE.BufferGeometry();
+    // const vertices = [];
 
-    for (let i = 0; i < 10000; i++) {
-      vertices.push(THREE.MathUtils.randFloatSpread(2000)); // x
-      vertices.push(THREE.MathUtils.randFloatSpread(2000)); // y
-      vertices.push(THREE.MathUtils.randFloatSpread(2000)); // z
-    }
+    // for (let i = 0; i < 10000; i++) {
+    //   vertices.push(THREE.MathUtils.randFloatSpread(2000)); // x
+    //   vertices.push(THREE.MathUtils.randFloatSpread(2000)); // y
+    //   vertices.push(THREE.MathUtils.randFloatSpread(2000)); // z
+    // }
 
-    geometry.setAttribute(
-      "position",
-      new THREE.Float32BufferAttribute(vertices, 3)
-    );
+    // geometry.setAttribute(
+    //   "position",
+    //   new THREE.Float32BufferAttribute(vertices, 3)
+    // );
 
-    const particles = new THREE.Points(
-      geometry,
-      new THREE.PointsMaterial({ color: 0x888888 })
-    );
-    scene.add(particles);
+    // const particles = new THREE.Points(
+    //   geometry,
+    //   new THREE.PointsMaterial({ color: 0x888888 })
+    // );
+    // scene.add(particles);
 
     // load model
     const loader = new FBXLoader(manager);
@@ -134,14 +134,19 @@ function World() {
       current.removeChild(renderer.domElement);
 
       scene.remove(world);
-      scene.remove(particles);
+      // scene.remove(particles);
       scene.remove(hemiLight);
       scene.remove(dirLight);
-      geometry.dispose();
+      // geometry.dispose();
     };
   }, []);
 
-  return <div ref={ref} />;
+  return (<div className="world-wrapper">
+    <div className="text">
+      Try to rotate World!
+    </div>
+    <div className="world" ref={ref} />
+  </div>);
 
   // return (
   //   <div className="App">
